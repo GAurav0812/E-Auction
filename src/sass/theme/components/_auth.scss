@@ -1,0 +1,335 @@
+$text-color: #ffffff;
+$placeholder-text:#071e1a;
+
+.auth-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 10%;
+
+  .form-control, .form-control:focus {
+    @include placeholderStyle($text-color, 0.9);
+    background-color: rgba(0, 0, 0, .4);
+    border-radius: 5px;
+    color: $text-color;
+  }
+  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    @include placeholderStyle($text-color, 0.6);
+  }
+  .auth-block {
+    width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+	background-color : #2F4F4F;
+    color: #fff;
+    padding: 32px;
+    h1 {
+      font-weight: $font-light;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      transition: all 0.2s ease;
+      color: $primary;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+
+    .control-label {
+      padding-top: 11px;
+      color: $text-color;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+    .login-box-msg {
+      margin: 0;
+      text-align: center;
+      padding: 0 20px 20px 20px;
+      text-transform: uppercase;
+    }
+  }
+
+  .register-block {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: -5%;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    background-color : #4A777A;
+    color: #fff;
+    padding: 20px;
+    h1 {
+      font-weight: $font-light;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      transition: all 0.2s ease;
+      color: $primary;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+    .register-box-msg{
+      font-size: 15px;
+      margin: 0;
+      text-align: center;
+      padding: 0 20px 20px 20px;
+      text-transform: uppercase;
+    }
+  .register-logo {
+      font-size: 35px;
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 300;
+    }
+
+    .control-label {
+      padding-top: 11px;
+      color: $text-color;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+  }
+
+  .auth-input {
+    width: 300px;
+    margin-bottom: 24px;
+    input {
+      display: block;
+      width: 100%;
+      border: none;
+      font-size: 16px;
+      padding: 4px 10px;
+      outline: none;
+    }
+  }
+  .auth-link {
+    display: block;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 33px;
+  }
+
+  .auth-sep {
+    margin-top: 36px;
+    margin-bottom: 24px;
+    line-height: 20px;
+    font-size: 16px;
+    text-align: center;
+    display: block;
+    position: relative;
+    & > span {
+      display: table-cell;
+      width: 30%;
+      white-space: nowrap;
+      padding: 0 24px;
+      color: $text-color;
+      & > span {
+        margin-top: -12px;
+        display: block;
+      }
+    }
+    &:before, &:after {
+      border-top: solid 1px $text-color;
+      content: "";
+      height: 1px;
+      width: 35%;
+      display: table-cell;
+    }
+  }
+  .btn-auth {
+    color: #ffffff!important;
+
+  }
+  .button-wrapper{
+    text-align: center;
+  }
+}
+
+.table-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 2%;
+
+  .form-control, .form-control:focus {
+    @include placeholderStyle($placeholder-text, 0.9);
+    background-color:#EEE7E7;
+    border-radius: 1px;
+    color: #0F0E0E;
+  }
+  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    @include placeholderStyle($placeholder-text, 0.6);
+  }
+  .table-block {
+    width: 900px;
+    margin: 0 auto;
+    border-radius: 1px;
+    background-color : #FFFFFF;
+    color: #0F0E0E;
+    padding: 30px;
+    h5 {
+      font-weight: $font-light;
+      margin-bottom: 35px;
+      text-align: center;
+    }
+    p {
+      font-size: 300px;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      transition: all 0.2s ease;
+      color: #e85309;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+    .profile-box-msg{
+      font-size: 15px;
+      margin: 0;
+      text-align: center;
+      padding: 0 20px 20px 20px;
+      text-transform: uppercase;
+    }
+    .control-label {
+      padding-top: 10px;
+      color: $text-color;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+  }
+}
+
+.dept-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 0 0 0 55px;
+  margin-top: 1%;
+
+  .form-control, .form-control:focus {
+    @include placeholderStyle($placeholder-text, 0.9);
+    background-color: #C4E9E1;
+    border-radius: 5px;
+    color: #071e1a;
+  }
+  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    @include placeholderStyle($placeholder-text, 0.6);
+  }
+  .dept-block {
+    width: 900px;
+    margin: 0 auto;
+    border-radius: 3px;
+    background-color : #F0FBFA;
+    color: #0B1E1B;
+    padding: 10px;
+    h5 {
+      font-weight: $font-light;
+      margin-bottom: 35px;
+      text-align: center;
+    }
+    p {
+      font-size: 300px;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      transition: all 0.2s ease;
+      color: $primary;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+    .control-label {
+      padding-top: 10px;
+      color: $text-color;
+    }
+
+    .form-group {
+      margin-bottom:5px;
+    }
+  }
+}
+
+.profile-main {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 2%;
+
+  .form-control, .form-control:focus {
+    @include placeholderStyle($text-color, 0.9);
+    background-color:#E5F2EF;
+    border-radius: 3px;
+    color: #0f0e0f;
+  }
+  .note-text{
+    color:#F51F06;
+  }
+  .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    @include placeholderStyle($text-color, 0.6);
+  }
+  .profile-block {
+    width: 900px;
+    margin: 0 auto;
+    border-radius: 1px;
+    background-color : #FFFFFF;
+    color: #0F0E0E;
+    padding: 30px;
+    h5 {
+      font-weight: $font-light;
+      margin-bottom: 35px;
+      text-align: center;
+    }
+    p {
+      font-size: 300px;
+    }
+    a {
+      text-decoration: none;
+      outline: none;
+      transition: all 0.2s ease;
+      color: $primary;
+      &:hover {
+        color: $primary-dark;
+      }
+    }
+    .profile-box-msg{
+      font-size: 15px;
+      margin: 0;
+      text-align: center;
+      padding: 0 20px 20px 20px;
+      text-transform: uppercase;
+    }
+    .control-label {
+      padding-top: 10px;
+      color: $text-color;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+  }
+}

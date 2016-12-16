@@ -1,0 +1,152 @@
+<main class="auth-main" ng-show="registerSuccess">
+    <div class="register-block">
+        <div class="register-box-body box">
+            <div id="register-success">
+                <div class="alert alert-success">
+                    <strong>You have Registered successfully ! </strong>
+                    <span class="close" data-dismiss="alert" aria-label="close">&times;</span>
+                </div>
+                <p>A verification link has been sent to your email address. Please check you mail.<br><br> Please note:
+                    You will be able to login once admin verify the other details and activate your account. You will
+                    receive a notification for the same.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<main class="auth-main" ng-hide="registerSuccess">
+    <div class="register-block">
+        <p class="register-box-msg">GET REGISTERED FOR THE MEMBERSHIP</p>
+        <form name="registerForm" method="post" role="form" ng-submit="addUser(registerForm.$valid)"
+              novalidate>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.typeId.$invalid && (registerForm.typeId.$dirty || registerForm.$submitted)}">
+                <div id="account-type" class="form-group has-feedback">
+                    <select class="form-control" ng-model="newUserInfo.typeId" id="select" class="form-control"
+                            name="typeId" ng-options="item.typeId as item.label for item in accountTypeOptions"
+                            required>
+                        <option value="">Select Account Type</option>
+                    </select>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.companyName.$invalid && (registerForm.companyName.$dirty || registerForm.$submitted)}">
+                <input class="form-control" id="inputcompanyName" name="companyName"
+                       placeholder="Enter Company Name"
+                       ng-model="newUserInfo.companyName" required>
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.email.$invalid && (registerForm.name.$dirty || registerForm.$submitted)}">
+                <input class="form-control" id="inputEmail" name="email" placeholder="Enter Email"
+                       ng-model="newUserInfo.email" required>
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.password.$invalid && (registerForm.password.$dirty || registerForm.$submitted)}">
+                <input type="password" class="form-control" id="inputPassword" name="password"
+                       placeholder="Enter Password"
+                       ng-model="newUserInfo.password" required>
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6"
+                     ng-class="{'has-error': registerForm.panNumber.$invalid && (registerForm.panNumber.$dirty || registerForm.$submitted)}">
+                    <input class="form-control" id="inputPanNumber" name="panNumber" placeholder="Enter PanNumber"
+                           ng-model="newUserInfo.panNumber" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+                <div class="form-group col-sm-6"
+                     ng-class="{'has-error': registerForm.vatNumber.$invalid && (registerForm.vatNumber.$dirty || registerForm.$submitted)}">
+                    <input class="form-control" id="inputVatNumber" name="vatNumber" placeholder="Enter VatNumber"
+                           ng-model="newUserInfo.vatNumber" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.name.$invalid && (registerForm.name.$dirty || registerForm.$submitted)}">
+                <input class="form-control" id="inputName" name="name" placeholder="Full Name(Optional)"
+                       ng-model="newUserInfo.name">
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.material.$invalid && (registerForm.material.$dirty || registerForm.$submitted)}">
+                <textarea   class="form-control" id="inputMaterial" name="material" placeholder="Material Description"
+                       ng-model="newUserInfo.material" required></textarea>
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.address.$invalid && (registerForm.address.$dirty || registerForm.$submitted)}">
+
+                <textarea class="form-control" id="inputAddress" name="address" placeholder="Enter Address"
+                       ng-model="newUserInfo.address"></textarea>
+                <!--  <span class="help-block error-block basic-block">Required</span>-->
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6"
+                     ng-class="{'has-error': registerForm.city.$invalid && (registerForm.city.$dirty || registerForm.$submitted)}">
+                    <input class="form-control" id="inputCity" name="city" placeholder="Enter City"
+                           ng-model="newUserInfo.city" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>   <div class="form-group col-sm-6"
+                              ng-class="{'has-error': registerForm.pin.$invalid && (registerForm.pin.$dirty || registerForm.$submitted)}">
+
+                <input class="form-control" id="inputPin" name="pin" placeholder="Enter Pincode"
+                       ng-model="newUserInfo.pin" required>
+            </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-sm-6"
+                     ng-class="{'has-error': registerForm.state.$invalid && (registerForm.state.$dirty || registerForm.$submitted)}">
+
+                    <input class="form-control" id="inputState" name="state" placeholder="Enter State"
+                           ng-model="newUserInfo.state" required>
+                </div>
+                <div class="form-group col-sm-6"
+                     ng-class="{'has-error': registerForm.country.$invalid && (registerForm.country.$dirty || registerForm.$submitted)}">
+                    <input class="form-control" id="inputCountry" name="country" placeholder="Enter Country"
+                           ng-model="newUserInfo.country" required>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.mobile.$invalid && (registerForm.mobile.$dirty || registerForm.$submitted)}">
+                <input class="form-control" id="inputMobile" name="mobile" placeholder="Enter Mobile"
+                       ng-model="newUserInfo.mobile" required>
+                <span class="help-block error-block basic-block">Required</span>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.phone.$invalid && (registerForm.phone.$dirty || registerForm.$submitted)}">
+                <input class="form-control" id="inputPhone" name="phone" placeholder="Enter Phone(Optional)"
+                       ng-model="newUserInfo.phone">
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': registerForm.website.$invalid && (registerForm.website.$dirty || registerForm.$submitted)}">
+                <input class="form-control" id="inputWebsite" name="website" placeholder="Enter Website(Optional)"
+                       ng-model="newUserInfo.website">
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-6">
+                    <div class="checkbox icheck">
+                        <label>
+                            <input type="checkbox" required> I agree to the <a href="#">terms</a>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" ng-disabled="registerForm.$invalid"
+                            class="btn btn-primary">Register
+                    </button>
+                    <a href="#/login" class="btn btn-link">Cancel</a>
+                </div>
+            </div>
+            <a href="#/login" class="text-center">Already a memeber with us?</a>
+        </form>
+    </div>
+</main>
+
+
+
+

@@ -1,0 +1,187 @@
+<uib-tabset active="usersForm">
+    <uib-tab index="0" heading="All Users">
+        <div class="table-main">
+            <div class="table-block">
+                <div class="horizontal-scroll">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-control-primary" class="note-text"
+                                ng-click="bulkUpdateUser('status','A')">
+                            Active
+                            <i class="fa fa-check"></i></button>
+                        <button type="submit" class="btn btn-control-primary" ng-click="bulkUpdateUser('status','I')">
+                            Inactive
+                            <i class="fa fa-close"></i></button>
+                        <button type="submit" class="btn btn-control-primary"
+                                ng-click="bulkUpdateUser('isVerified','true')">Verified
+                            <i class="fa fa-star"></i></button>
+                        <button type="submit" class="btn btn-control-primary"
+                                ng-click="bulkUpdateUser('isVerified','false')">Unverified
+                            <i class="fa fa-star-o"></i></button>
+                        <label class="pull-right">Rows on page
+                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                    ng-model="userPageSize" ng-options="i for i in [5,10,15,20,25]">
+                            </select>
+                        </label>
+                    </div>
+
+                    <table class="table" st-table="usersData" st-safe-src="usersSafeData">
+
+                        <thead>
+                        <tr class="sortable ">
+                            <th></th>
+                            <th st-sort="companyName"><b>COMPANY NAME</b></th>
+                            <th st-sort="typeId"><b>ACCOUNT TYPE</b></th>
+                            <th><b>STATUS</b></th>
+                            <th><b>EMAIL VERIFIED</b></th>
+                            <th><b>VIEW/EDIT</b></th>
+
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <th><input st-search="companyName" placeholder="Search Company Name"
+                                       class="input-sm form-control search-input"
+                                       type="search"/></th>
+                            <th><select st-search="typeId" st-input-event="change" st-delay="0" ng-model="dummy"
+                                        class="input-sm form-control">
+                                <option value="">
+                                    All
+                                </option>
+                                <option value="1">
+                                    Administrator
+                                </option>
+                                <option value="4">
+                                    Observer
+                                </option>
+                                <option value="3">
+                                    Participator
+                                </option>
+                            </select>
+                            </th>
+                            <th><select st-search="status" st-input-event="change" st-delay="0" ng-model="dummy"
+                                        class="input-sm form-control">
+                                <option value="">
+                                    All
+                                </option>
+                                <option value="I">
+                                    InActive
+                                </option>
+                                <option value="A">
+                                    Active
+                                </option>
+                            </select>
+                            </th>
+                            <th><select st-search="isVerified" st-input-event="change" st-delay="0" ng-model="dummy"
+                                        class="input-sm form-control">
+                                <option value="">
+                                    All
+                                </option>
+                                <option value="false">
+                                    No
+                                </option>
+                                <option value="true">
+                                    Yes
+                                </option>
+                            </select></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in usersData">
+                            <td cs-select="item" cs-select-items="selectedRows"></td>
+                            <td class="multiline-cell">{{item.companyName}}</td>
+                            <td>
+                                <div class="sub">{{item.typeId | accountTypeFullForm}}</div>
+                            </td>
+
+                            <td editable-select="item.status" e-selectpicker blur="cancel"
+                                e-ng-options="g.id as g.text for g in statusOptions"
+                                onbeforesave="validateBeforeSave($data)" onaftersave="updateUser(item)">{{item.status |
+                                statusFullForm}}
+                            </td>
+                            <td editable-select="item.isVerified" e-selectpicker blur="cancel"
+                                e-ng-options="e.id as e.text for e in isVerifiedOptions"
+                                onbeforesave="validateBeforeSave($data)" onaftersave="updateUser(item)">
+                                {{item.isVerified |
+                                isVerifiedFullForm}}
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-xs" data-toggle="modal" ng-click="editProfile(item)">
+                                    <i class="fa fa-pencil"> View/Edit</i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="6" class="text-center">
+                                <div st-pagination="" st-items-by-page="userPageSize" st-displayed-pages="5"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+
+    <uib-tab index="1" heading="Assign Department">
+        <div class="table-main">
+            <div class="table-block">
+                <div class="horizontal-scroll">
+                    <div class="form-group ">
+                        <form name="newAssignDeptForm" method="post" class="form-inline"
+                              ng-submit="addAssignDept(newAssignDeptForm.$valid)"
+                              novalidate>
+                            <div class="form-group">
+                                <select class="form-control" id="inputUserId" name="userId"
+                                        ng-model="newAssignDeptInfo.userId" placeholder="Select Observer"
+                                        class="form-control"
+                                        ng-options="item.id as item.companyName for item in usersData | filter:userObserverFilter()"
+                                        required>
+                                    <option value="">Select Observer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control"
+                                        ng-model="newAssignDeptInfo.departmentId" placeholder="Select Department"
+                                        id="selectDepartmentId" class="form-control"
+                                        name="departmentId"
+                                        ng-options="item.id as item.name for item in departmentsData" required>
+                                    <option value="">Select Department</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary" ng-hide="dataLoading">ASSIGN
+                                </button>
+                                <i class="fa fa-spinner fa-spin" ng-show="dataLoading"></i>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table" st-table="usersData" st-safe-src="userSafeData">
+                        <thead>
+                        <tr class="sortable ">
+                            <th><b>OBSERVER</b></th>
+                            <th><b>ASSIGNED DEPARTMENT</b></th>
+                        </tr>
+                        <tr>
+                            <th><input st-search="companyName" placeholder="Search Observer Name"
+                                       class="input-sm form-control search-input"
+                                       type="search"/>
+                            </th>
+                            <th><input st-search="departmentName" placeholder="Search Department"
+                                       class="input-sm form-control search-input"
+                                       type="search"/>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in usersData | filter:statusFilter()">
+                            <td>{{item.companyName}}</td>
+                            <td>{{item.departmentName|unassignedDeptFilter}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>
+

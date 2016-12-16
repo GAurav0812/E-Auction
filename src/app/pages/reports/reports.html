@@ -1,0 +1,65 @@
+<div class="table-main">
+    <div class="table-block">
+        <div class="box box-solid">
+            <div class="box-header">
+                <h4>AUCTION / TENDER - DEPARTMENT WISE REPORT</h4>
+            </div>
+            <form id="lotWiseReportForm" class="form" role="form">
+                <div class="box-body" id="reports-cont">
+                    <div class="form-group">
+                        <label>SELECT DEPARTMENT</label>
+                        <select class="form-control" ng-model="reportInfo.id"  ng-change="getAuctionsInfo(item)" placeholder="Select Department" id="deptIdLotReport" class="form-control" name="departmentId" ng-options="item.id as item.name for item in departmentsData" required>
+                            <option value="">Select Department</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>SELECT AUCTION / TENDER</label>
+                        <select class="form-control" ng-model="reportInfo.auctionId" ng-click="getLotsInfo(item)" placeholder="Select Department" id="auctionIdLotReport" class="form-control" name="auction" ng-options="item.auctionId as item.name for item in auctionsData" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>SELECT LOTS</label>
+                        <select class="form-control" ng-model="reportInfo.lotsId" placeholder="Select Lots" class="form-control" name="lot" ng-options="item.id as item.name for item in lotsData" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+
+                </div><!-- /.box-body -->
+                <div class="overlay" style="display:none"><i class="fa fa-refresh fa-spin"></i></div>
+                <div class="box-footer">
+                    <div><input type="checkbox" value="" id="tenderEnable"/> Show tender report</div>
+                    <button type="button" class="btn bg-orange" id="btnSheet"><i class="fa fa-download"></i> Bid Sheet
+                    </button>
+                    <button type="button" class="btn bg-orange" id="btnHistory"><i class="fa fa-download"></i> Bid
+                        History
+                    </button>
+                    &nbsp;&nbsp;&nbsp;<span id="lotwise-control" style="display:none">
+						<select></select>
+						<button type="button" class="btn bg-orange" id="btnLotwise"><i class="fa fa-list-ol"></i> Lotwise Bid</button>
+					</span>
+                </div>
+            </form>
+        </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id="lotwise-reports-dialog" aria-labelledby="model-heading">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="model-heading"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box box-solid">
+                            <table class="table"></table>
+                            <div class="overlay" style="display:none"><i class="fa fa-refresh fa-spin"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="fa fa-close sn-link-close"></em>
+        </button>
+        <h4 class="modal-title">Edit Customer - <span ng-bind="editUserInfo.name"></span></h4>
+    </div>
+    <div class="modal-body">
+        <form name="editUser.form" class="form-horizontal" ng-submit="saveEditFormChange(editUser.form.$valid);"
+              novalidate>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.name.$invalid && (editUser.form.name.$dirty || editUser.form.$submitted)}">
+                <label for="inputName" class="col-sm-3 control-label">Name*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputName" name="name" placeholder="Enter Name"
+                           ng-model="editUserInfo.name" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.status.$invalid && (editUser.form.status.$dirty || editUser.status.$submitted)}">
+                <label for="inputName" class="col-sm-3 control-label">Status</label>
+                <div class="col-sm-8">
+                    <select st-input-event="change"
+                            ng-options="g.id as g.text for g in statusOptions"
+                            st-delay="0" ng-model="editUserInfo.status" class="input-sm form-control">
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group "
+                 ng-class="{'has-error': editUser.form.email.$invalid && (editUser.form.email.$dirty || editUser.form.$submitted)}">
+                <label for="inputEmail" class="col-sm-3 control-label">Email*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputEmail" name="email" placeholder="Enter Email"
+                           ng-model="editUserInfo.email" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.companyName.$invalid && (editUser.form.companyName.$dirty || editUser.form.$submitted)}">
+                <label for="inputCompanyName" class="col-sm-3 control-label">Company Name*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputCompanyName" name="CompanyName" placeholder="Enter CompanyName"
+                           ng-model="editUserInfo.companyName" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.mobile.$invalid && (editUser.form.mobile.$dirty || editUser.form.$submitted)}">
+                <label for="inputMobile" class="col-sm-3 control-label">Mobile*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputMobile" name="mobile" placeholder="Enter Mobile"
+                           ng-model="editUserInfo.mobile" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.material.$invalid && (editUser.form.material.$dirty || editUser.form.$submitted)}">
+                <label for="inputMaterial" class="col-sm-3 control-label">Material*</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="inputMaterial" name="Material" placeholder="Enter Material"
+                           ng-model="editUserInfo.material" required></textarea>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.panNumber.$invalid && (editUser.form.panNumber.$dirty || editUser.form.$submitted)}">
+                <label for="inputPanNumber" class="col-sm-3 control-label">Pan Number*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputPanNumber" name="PanNumber" placeholder="Enter Pan Number"
+                              ng-model="editUserInfo.panNumber" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.vatNumber.$invalid && (editUser.form.VatNumber.$dirty || editUser.form.$submitted)}">
+                <label for="inputVatNumber" class="col-sm-3 control-label">Vat Number*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputVatNumber" name="VanNumber" placeholder="Enter Vat Number"
+                              ng-model="editUserInfo.vatNumber" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress" class="col-sm-3 control-label">Address</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="inputAddress" name="address" placeholder="Full Address"
+                              ng-model="editUserInfo.address" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.city.$invalid && (editUser.form.city.$dirty || editUser.form.$submitted)}">
+                <label for="inputCity" class="col-sm-3 control-label">City*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputCity" name="City" placeholder="Enter City"
+                           ng-model="editUserInfo.city" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.pin.$invalid && (editUser.form.pin.$dirty || editUser.form.$submitted)}">
+                <label for="inputVatNumber" class="col-sm-3 control-label">Pin*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputPin" name="Pin" placeholder="Enter Pin"
+                           ng-model="editUserInfo.pin" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.country.$invalid && (editUser.form.country.$dirty || editUser.form.$submitted)}">
+                <label for="inputVatNumber" class="col-sm-3 control-label">Country*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputCountry" name="Country" placeholder="Enter Country"
+                           ng-model="editUserInfo.country" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+            <div class="form-group"
+                 ng-class="{'has-error': editUser.form.state.$invalid && (editUser.form.VatNumber.$dirty || editUser.form.$submitted)}">
+                <label for="inputVatNumber" class="col-sm-3 control-label">State*</label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="inputState" name="State" placeholder="Enter State"
+                           ng-model="editUserInfo.state" required>
+                    <span class="help-block error-block basic-block">Required</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-8">
+                    <button type="submit" class="btn btn-primary" ng-hide="dataLoading">Save</button>
+                    <i class="fa fa-spinner fa-spin" ng-show="dataLoading"></i></div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        *Required fields
+    </div>
+</div>
+
+

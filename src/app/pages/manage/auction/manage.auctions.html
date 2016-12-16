@@ -1,0 +1,83 @@
+<div class="horizontal-scroll">
+    <div class="table-main">
+        <div class="table-block">
+            <div class="form-group ">
+                <input datetime-picker ng-model="model" />
+                <button type="submit" class="btn btn-primary col-sm-3 pull-right " ng-hide="dataLoading"
+                        ng-click="addAuctionBox(newAuctionForm)">Add New Auction
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </div><br><br>
+            <div class="form-group ">
+                <label class="pull-right">Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="auctionPageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </label>
+            </div>
+            <table class="table" st-table="auctionsData" st-safe-src="auctionSafetData">
+                <thead>
+                <tr>
+                    <th><b>AUCTION</b></th>
+                    <th><b>STATUS</b></th>
+                    <th><b>EDIT</b></th>
+                    <th><b>MANAGE</b></th>
+                </tr>
+
+                <tr>
+                    <th><input st-search="name" placeholder="Search Auction Name"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><select st-search="status" st-input-event="change" st-delay="0" ng-model="dummy"
+                                class="input-sm form-control">
+                        <option value="">
+                            All
+                        </option>
+                        <option value="I">
+                            InActive
+                        </option>
+                        <option value="A">
+                            Active
+                        </option>
+                    </select>
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in auctionsData">
+                    <td>{{item.name}}
+                    </td>
+                    <td editable-select="item.status" e-selectpicker blur="cancel"
+                        e-ng-options="g.id as g.text for g in statusOptions"
+                        onbeforesave="validateBeforeSave($data)" onaftersave="updateDepartment(item)">
+                        {{item.status |
+                        statusFullForm}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" ng-click="editAuc(item)">
+                            <i class="fa fa-hdd-o"></i> VIEW/EDIT
+                        </button>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-primary btn-xs" ng-click="goToLotsPage(item)">
+                            <i class="fa fa-hdd-o"></i> MANAGE LOTS
+                        </button>
+                    </td>
+
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4" class="text-center">
+                        <div st-pagination="" st-items-by-page="auctionPageSize"
+                             st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

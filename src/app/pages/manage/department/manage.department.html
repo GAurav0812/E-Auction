@@ -1,0 +1,115 @@
+<div class="form-group ">
+    <div class="dept-main">
+        <div class="dept-block">
+            <span class="lead">Departments</span>
+            <form name="newDeptForm" method="post" class="form-inline" novalidate>
+                <div class="form-group">
+                    <input class="form-control" id="inputDeptName" name="name"
+                           placeholder="Enter Department Name"
+                           ng-model="newDeptInfo.name" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="file" ngf-select ng-model="picFile" name="file"
+                           accept="image/*" ngf-max-size="2MB" required>
+                </div>
+                <div class="form-group">
+                    <button class="btn bg-orange" type="submit" ng-click="uploadLogo(picFile)">Upload
+                    </button>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" ng-hide="dataLoading"
+                            ng-click="addDepartment(newDeptForm)">Add New Department
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="table-main">
+    <div class="table-block">
+        <div class="horizontal-scroll">
+            <div class="form-group ">
+                <label class="pull-right">Rows on page
+                    <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                            ng-model="departmentPageSize" ng-options="i for i in [5,10,15,20,25]">
+                    </select>
+                </label>
+            </div>
+            <table class="table" st-table="departmentsData" st-safe-src="departmentSafetData">
+                <thead>
+                <tr>
+                    <th><b></b></th>
+                    <th><b>DEPARTMENT</b></th>
+                    <th><b>STATUS</b></th>
+                    <th><b>VIEW/EDIT</b></th>
+                    <th><b>MANAGE</b></th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th><input st-search="name" placeholder="Search Department Name"
+                               class="input-sm form-control search-input"
+                               type="search"/></th>
+                    <th><select st-search="status" st-input-event="change" st-delay="0" ng-model="dummy"
+                                class="input-sm form-control">
+                        <option value="">
+                            All
+                        </option>
+                        <option value="I">
+                            InActive
+                        </option>
+                        <option value="A">
+                            Active
+                        </option>
+                    </select>
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in departmentsData">
+                    <td>
+                    <div ng-if="item.logoPath != ''"
+                         ng-include="'app/pages/manage/department/partials/img-preview.html'"></div>
+                </td>
+                    <td>{{item.name}}
+                    </td>
+                    <td editable-select="item.status" e-selectpicker blur="cancel"
+                        e-ng-options="g.id as g.text for g in statusOptions"
+                        onbeforesave="validateBeforeSave($data)" onaftersave="updateDepartment(item)">{{item.status
+                        |
+                        statusFullForm}}
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-xs" data-toggle="modal" ng-click="editDepartment(item)">
+                            <i class="fa fa-pencil"></i> CHANGE
+                        </button>
+                    </td>
+                    <!--<td ng-click="getAuctionsData(item)">
+                        <a href="#/auction"> <i class="fa fa-hdd-o"></i>MANAGE AUCTIONS</a>
+                    </td>-->
+                      <td>
+                          <button class="btn btn-primary btn-xs" ng-click="goToAuctionPage(item)">
+                              <i class="fa fa-hdd-o"></i> MANAGE AUCTIONS
+                          </button>
+                      </td>
+
+                    <!--<td ng-model="adminData.id" ng-click="getAuctionsData(item)"><a href="#/auction">click</a></td>-->
+
+
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5" class="text-center">
+                        <div st-pagination="" st-items-by-page="departmentPageSize"
+                             st-displayed-pages="5"></div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

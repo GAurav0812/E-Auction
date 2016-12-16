@@ -1,0 +1,189 @@
+<uib-tabset active="profileForm">
+    <uib-tab index="0" heading="Update Profile">
+        <div class="profile-main">
+            <div class="profile-block">
+                <div class="form-group">
+                    <form id="profileForm" class="form" role="form" method="post"
+                          ng-submit="updateProfile(profileForm.$valid)">
+
+                        <div class="box-body">
+                            <br>
+                            <h6 class="note-text">Note: * Fields are non editable</h6>
+                            <div class="col-sm-6 col-md-6 col-lg-4" id="accountInfoSection">
+                                <h4>Account Info</h4>
+                                <div class="form-group">
+                                    Account Type*
+                                    <div ng-class="{'has-error': profileForm.userTypeLabel.$invalid && (profileForm.userTypeLabel.$dirty || profileForm.$submitted)}">
+                                        <input ng-readonly="true" class="form-control" name="userTypeLabel"
+                                               ng-model="newProfileInfo.userTypeLabel" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="typeId" value="" type="hidden" ng-model="newProfileInfo.typeId"
+                                           class="form-control">
+                                    <input name="id" value="" type="hidden" ng-model="newProfileInfo.id"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    Company name*
+                                    <div ng-class="{'has-error': profileForm.companyName.$invalid && (profileForm.companyName.$dirty || profileForm.$submitted)}">
+                                        <input ng-readonly="true" class="form-control" id="inputcompanyName"
+                                               name="companyName"
+                                               ng-model="newProfileInfo.companyName" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    Material Description
+                                    <div ng-class="{'has-error': profileForm.material.$invalid && (profileForm.material.$dirty || profileForm.$submitted)}">
+                                        <textarea class="form-control" id="inputMaterial" name="material"
+                                                  ng-model="newProfileInfo.material" required></textarea>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    PAN Number*
+                                    <div ng-class="{'has-error': profileForm.panNumber.$invalid && (profileForm.panNumber.$dirty || profileForm.$submitted)}">
+                                        <input ng-readonly="true" class="form-control" id="inputPanNumber"
+                                               name="panNumber"
+                                               ng-model="newProfileInfo.panNumber" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    VAT Number*
+                                    <div ng-class="{'has-error': profileForm.vatNumber.$invalid && (profileForm.vatNumber.$dirty || profileForm.$submitted)}">
+                                        <input ng-readonly="true" class="form-control" id="inputVatNumber"
+                                               name="vatNumber"
+                                               ng-model="newProfileInfo.vatNumber" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-4" id="ContactInfoSection">
+                                <h4>Contact Info</h4>
+                                <div class="form-group">
+                                    Name*
+                                    <div ng-class="{'has-error': profileForm.name.$invalid && (profileForm.name.$dirty || profileForm.$submitted)}">
+                                        <input ng-readonly="true" class="form-control" id="inputName" name="name"
+                                               ng-model="newProfileInfo.name">
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    Email*
+                                    <div ng-class="{'has-error': profileForm.email.$invalid && (profileForm.name.$dirty || profileForm.$submitted)}">
+                                        <input ng-readonly="true" class="form-control" id="inputEmail" name="email"
+                                               ng-model="newProfileInfo.email" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    Phone <input id="editProfilePhone" name="phone" type="text"
+                                                 ng-model="newProfileInfo.phone" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    Mobile <input id="editProfileMobile" name="mobile" type="text" value=""
+                                                  ng-model="newProfileInfo.mobile" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-md-6 col-lg-4" id="addressInfoSection">
+                                <h4>Address Info</h4>
+                                <div class="form-group">
+                                    Address
+                                    <div ng-class="{'has-error': profileForm.address.$invalid && (profileForm.address.$dirty || profileForm.$submitted)}">
+                                        <textarea class="form-control" id="inputAddress" name="address"
+                                                  ng-model="newProfileInfo.address"></textarea>
+                                        <!--  <span class="help-block error-block basic-block">Required</span>-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    City
+                                    <div ng-class="{'has-error': profileForm.city.$invalid && (profileForm.city.$dirty || profileForm.$submitted)}">
+                                        <input class="form-control" id="inputCity" name="city"
+                                               ng-model="newProfileInfo.city" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    Pin Code
+                                    <div ng-class="{'has-error': profileForm.pin.$invalid && (profileForm.pin.$dirty || profileForm.$submitted)}">
+                                        <input class="form-control" id="inputPin" name="pin"
+                                               ng-model="newProfileInfo.pin" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    State
+                                    <div ng-class="{'has-error': profileForm.state.$invalid && (profileForm.state.$dirty || profileForm.$submitted)}">
+                                        <input class="form-control" id="inputState" name="state"
+                                               ng-model="newProfileInfo.state" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    Country
+                                    <div ng-class="{'has-error': profileForm.country.$invalid && (profileForm.country.$dirty || profileForm.$submitted)}">
+                                        <input class="form-control" id="inputCountry" name="country"
+                                               ng-model="newProfileInfo.country" required>
+                                        <span class="help-block error-block basic-block">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">UPDATE</button>
+                                <button type="button" id="resetEditprofileForm" class="btn" style="margin-left:4px;">
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </uib-tab>
+    <uib-tab index="1" heading="Change Password">
+        <div class="profile-main">
+            <div class="profile-block">
+                <form id="changePasswordForm" class="form" role="form" method="post"
+                      ng-submit="changePassword(changePasswordForm)">
+                    <div class="box-body">
+                        <div class="form-group">
+                            Old Password<input ng-model="newPasswordInfo.oldPassword" id="oldPassword"
+                                               name="oldPassword" type="password" class="form-control"
+                                               required>
+                        </div>
+                        <div class="form-group">
+                            New Password <input ng-model="newPasswordInfo.newPassword" id="newPassword"
+                                                name="newPassword" type="password" class="form-control"
+                                                required>
+                        </div>
+                        <div class="form-group">
+                            Confirm New Password <input id="newConfirmPassword" type="password" class="form-control"
+                                                        required>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Change</button>
+                        <button type="button" id="ChangePasswordFormReset" class="btn" style="margin-left:4px;">Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </uib-tab>
+</uib-tabset>
+
+
+
+
+
+
+
+
